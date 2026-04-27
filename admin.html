@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin · Dr. Rodrigo Benítez Olazar</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    body { background: var(--bg-alt); padding: 40px 0; }
+    .admin-wrap { max-width: 980px; margin: 0 auto; padding: 0 22px; }
+    .admin-card {
+      background: white;
+      padding: 40px 44px;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 24px;
+    }
+    .admin-card h2 { font-size: 28px; margin-bottom: 20px; }
+    .admin-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 20px;
+      align-items: start;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .admin-row:last-child { border-bottom: 0; }
+    .admin-row label {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      font-weight: 500;
+      padding-top: 8px;
+    }
+    input[type="text"], input[type="email"], input[type="tel"], textarea, select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      background: white;
+      font-family: var(--sans);
+      font-size: 14px;
+      color: var(--ink);
+      transition: border-color .2s;
+    }
+    input:focus, textarea:focus { outline: none; border-color: var(--gold); }
+    textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
+    .admin-row.full { grid-template-columns: 1fr; }
+    .admin-actions {
+      display: flex;
+      gap: 14px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+    .login-screen {
+      max-width: 460px;
+      margin: 80px auto;
+      padding: 48px 40px;
+      background: white;
+      box-shadow: var(--shadow-md);
+      text-align: center;
+    }
+    .login-screen .logo {
+      font-family: var(--display);
+      font-size: 48px;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .login-screen h1 { font-size: 26px; margin-bottom: 12px; }
+    .login-screen p { color: var(--ink-mute); margin-bottom: 28px; font-size: 14px; }
+    .login-screen input {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+    .login-screen .btn { width: 100%; justify-content: center; padding: 14px; }
+    .err { color: #c4434a; font-size: 13px; margin-top: -8px; margin-bottom: 18px; min-height: 16px; }
+    .item-card {
+      background: var(--bg-alt);
+      padding: 20px 22px;
+      margin-bottom: 14px;
+      position: relative;
+      border-left: 3px solid var(--gold);
+    }
+    .item-card .remove {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 26px; height: 26px;
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--ink-mute);
+      font-size: 14px;
+      border-radius: 50%;
+    }
+    .item-card .remove:hover { border-color: #c4434a; color: #c4434a; }
+    .add-btn {
+      padding: 10px 18px;
+      border: 1px dashed var(--line);
+      background: transparent;
+      color: var(--ink-mute);
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      width: 100%;
+      transition: all .2s;
+    }
+    .add-btn:hover { border-color: var(--gold); color: var(--gold); border-style: solid; }
+    .toast {
+      position: fixed;
+      bottom: 30px; right: 30px;
+      background: var(--ink); color: white;
+      padding: 14px 22px;
+      font-size: 13px;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(100px);
+      transition: transform .3s var(--transition);
+      z-index: 200;
+    }
+    .toast.show { transform: translateY(0); }
+    .toast.error { background: #c4434a; }
+    .preview-link {
+      display: inline-block;
+      font-size: 12px;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+    .help-text { font-size: 12.5px; color: var(--ink-mute); margin-top: 6px; line-height: 1.5; }
+    .image-edit { display: flex; gap: 14px; align-items: center; }
+    .image-edit img { width: 80px; height: 80px; object-fit: cover; }
+    .tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--line);
+    }
+    .tab {
+      padding: 14px 22px;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .tab.active { color: var(--ink); border-bottom-color: var(--gold); }
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- Login screen -->
+  <div id="loginScreen" class="login-screen">
+    <div class="logo">R</div>
+    <h1>Admin Access</h1>
+    <p>Enter your password to edit the public site content.</p>
+    <input type="password" id="pwd" placeholder="Password" autocomplete="current-password" />
+    <div class="err" id="loginErr"></div>
+    <button class="btn btn-primary" id="loginBtn">Enter</button>
+    <p style="margin-top: 24px; font-size: 12px;"><a href="index.html" style="color: var(--ink-mute);">← Back to site</a></p>
+  </div>
+
+  <!-- Editor screen -->
+  <div id="editorScreen" class="admin-wrap" style="display:none;">
+
+    <div class="admin-card">
+      <div style="display:flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 18px;">
+        <div>
+          <h2 style="margin:0;">Content Editor</h2>
+          <p class="muted" style="margin-top: 6px; font-size: 13px;">Changes are saved locally to your browser. Use <strong>Export JSON</strong> to update the published site.</p>
+        </div>
+        <div class="admin-actions" style="margin: 0;">
+          <button class="btn btn-ghost" id="previewBtn">Preview site</button>
+          <button class="btn btn-primary" id="saveBtn">Save changes</button>
+          <button class="btn btn-ghost" id="exportBtn">Export JSON</button>
+          <button class="btn btn-ghost" id="logoutBtn" style="border-color: #c4434a; color: #c4434a;">Log out</button>
+        </div>
+      </div>
+
+      <p class="help-text" style="margin-top: 18px;">
+        <strong>How publishing works:</strong> after editing, click <em>Save</em> to preview your changes locally,
+        then <em>Export JSON</em> to download an updated <code>content.json</code>. Replace the file in
+        <code>data/content.json</code> in your repository and commit — GitHub Pages will update automatically.
+      </p>
+    </div>
+
+    <div class="admin-card">
+      <div class="tabs" id="tabs">
+        <div class="tab active" data-tab="profile">Profile</div>
+        <div class="tab" data-tab="experience">Experience</div>
+        <div class="tab" data-tab="education">Education</div>
+        <div class="tab" data-tab="skills">Skills · Languages</div>
+        <div class="tab" data-tab="cases">Cases</div>
+        <div class="tab" data-tab="stats">Stats</div>
+      </div>
+
+      <!-- Profile tab -->
+      <div class="tab-pane active" data-pane="profile">
+        <div class="admin-row"><label>Full name</label><input type="text" data-bind="profile.name" /></div>
+        <div class="admin-row"><label>Title</label><input type="text" data-bind="profile.title" /></div>
+        <div class="admin-row"><label>Subtitle</label><input type="text" data-bind="profile.subtitle" /></div>
+        <div class="admin-row"><label>Tagline (hero)</label><input type="text" data-bind="profile.tagline" /></div>
+        <div class="admin-row"><label>Intro paragraph</label><textarea data-bind="profile.intro" rows="5"></textarea></div>
+        <div class="admin-row"><label>Email</label><input type="email" data-bind="profile.email" /></div>
+        <div class="admin-row"><label>Phone</label><input type="tel" data-bind="profile.phone" /></div>
+        <div class="admin-row"><label>Instagram handle</label><input type="text" data-bind="profile.instagram" /></div>
+        <div class="admin-row"><label>Instagram URL</label><input type="text" data-bind="profile.instagramUrl" /></div>
+        <div class="admin-row"><label>Location</label><input type="text" data-bind="profile.location" /></div>
+        <div class="admin-row"><label>License</label><input type="text" data-bind="profile.license" /></div>
+        <div class="admin-row"><label>Nationality</label><input type="text" data-bind="profile.nationality" /></div>
+      </div>
+
+      <!-- Experience tab -->
+      <div class="tab-pane" data-pane="experience">
+        <div id="experienceList"></div>
+        <button class="add-btn" id="addExperience">+ Add experience</button>
+      </div>
+
+      <!-- Education tab -->
+      <div class="tab-pane" data-pane="education">
+        <div id="educationList"></div>
+        <button class="add-btn" id="addEducation">+ Add education</button>
+      </div>
+
+      <!-- Skills/Languages tab -->
+      <div class="tab-pane" data-pane="skills">
+        <h3 style="margin-bottom: 12px;">Skills</h3>
+        <p class="help-text" style="margin-bottom: 16px;">One skill per line.</p>
+        <textarea id="skillsTextarea" rows="14" style="width:100%;"></textarea>
+
+        <h3 style="margin: 30px 0 12px;">Languages</h3>
+        <p class="help-text" style="margin-bottom: 16px;">Format: <code>Name | Level</code> (e.g., <code>English | Professional</code>). One per line.</p>
+        <textarea id="langsTextarea" rows="6" style="width:100%;"></textarea>
+      </div>
+
+      <!-- Cases tab -->
+      <div class="tab-pane" data-pane="cases">
+        <p class="help-text" style="margin-bottom: 18px;">
+          To update images, place new files in the <code>assets/cases/</code> folder of your repo (e.g. <code>case-22-before.jpg</code>) and reference them below.
+          Drag the cards or use ↑↓ buttons to reorder.
+        </p>
+        <div id="casesList"></div>
+        <button class="add-btn" id="addCase">+ Add case</button>
+      </div>
+
+      <!-- Stats tab -->
+      <div class="tab-pane" data-pane="stats">
+        <div id="statsList"></div>
+        <button class="add-btn" id="addStat">+ Add stat</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="data/content.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1a1814" />
+  <title>Dr. Rodrigo Benítez Olazar — Prosthodontist · Dubai</title>
+  <meta name="description" content="DHA-licensed prosthodontist based in Dubai. Specialist in aesthetic and restorative dentistry: porcelain veneers, full-mouth rehabilitation, implant-supported prosthetics." />
+  <meta property="og:title" content="Dr. Rodrigo Benítez Olazar — Prosthodontist" />
+  <meta property="og:description" content="Smiles designed with science. Restored with art." />
+  <meta property="og:image" content="assets/profile/hero-portrait.jpg" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231a1814'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='62' fill='%23b08a4a' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ==================== NAV ==================== -->
+  <header class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="#top" class="brand"><span class="dot"></span>Dr. Rodrigo Benítez Olazar</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero" id="top">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-text reveal">
+          <span class="eyebrow" data-edit="profile.eyebrow">Prosthodontist · Dubai</span>
+          <h1>
+            <span class="light" data-edit-fn="firstName">Rodrigo</span><br/>
+            <span class="accent" data-edit-fn="lastName">Benítez Olazar</span>
+          </h1>
+          <div class="hero-meta">
+            <span data-edit="profile.title">Prosthodontist · General Dentist</span>
+            <span data-edit="profile.location">Dubai, UAE</span>
+          </div>
+          <p class="lead" data-edit="profile.intro">
+            I am a DHA-licensed prosthodontist with over a decade of clinical experience...
+          </p>
+          <div class="hero-cta">
+            <a href="#portfolio" class="btn btn-primary btn-arrow">View Portfolio</a>
+            <a href="#contact" class="btn btn-ghost">Contact me</a>
+          </div>
+        </div>
+
+        <div class="hero-portrait reveal">
+          <img src="assets/profile/hero-portrait.jpg" alt="Dr. Rodrigo Benítez Olazar" data-edit-img="hero" />
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint">Scroll</div>
+  </section>
+
+  <!-- ==================== STATS ==================== -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid" id="statsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ==================== ABOUT ==================== -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image reveal">
+          <img src="assets/profile/about-portrait.jpg" alt="Dr. Rodrigo Benítez Olazar" data-edit-img="about" />
+        </div>
+        <div class="about-text reveal">
+          <span class="eyebrow">About</span>
+          <h2 data-edit="profile.tagline">Smiles designed with science. Restored with art.</h2>
+          <div class="divider"></div>
+          <p class="lead" data-edit="profile.intro">
+            I am a DHA-licensed prosthodontist...
+          </p>
+          <p style="margin-top: 18px;">
+            Trained at the Universidad Nacional de Asunción and at the world-renowned Faculdade de Odontologia de Bauru — Universidade de São Paulo, my approach blends biological understanding, occlusal precision and the latest in digital workflows. I believe each restoration must look natural, function harmoniously, and last for years — and that the patient should be a partner in every decision along the way.
+          </p>
+          <p class="signature" data-edit="profile.signature">— Dr. Rodrigo</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== EXPERIENCE ==================== -->
+  <section id="experience" style="background: var(--bg-alt);">
+    <div class="container">
+      <div class="split">
+        <div class="col-title">
+          <span class="eyebrow">Career</span>
+          <h2>Professional<br/>Experience</h2>
+          <p class="muted" style="margin-top: 18px; max-width: 320px;">Over a decade of clinical practice across Paraguay, Brazil and the United Arab Emirates.</p>
+        </div>
+        <div class="col-content">
+          <div class="timeline" id="experienceList"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== EDUCATION ==================== -->
+  <section id="education">
+    <div class="container">
+      <div class="split">
+        <div class="col-title">
+          <span class="eyebrow">Education</span>
+          <h2>Academic<br/>Background</h2>
+        </div>
+        <div class="col-content">
+          <div class="timeline" id="educationList"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SKILLS & LANGUAGES ==================== -->
+  <section id="skills" style="background: var(--bg-alt);">
+    <div class="container">
+      <div class="split">
+        <div class="col-title">
+          <span class="eyebrow">Expertise</span>
+          <h2>Clinical<br/>Skills</h2>
+          <p class="muted" style="margin-top: 18px; max-width: 320px;">A focused practice anchored in prosthodontics, aesthetic dentistry and full-mouth rehabilitation.</p>
+        </div>
+        <div class="col-content">
+          <div class="tags" id="skillsList"></div>
+
+          <div style="margin-top: 56px;">
+            <span class="eyebrow">Languages</span>
+            <h3 style="margin-bottom: 22px; margin-top: 12px;">Spoken</h3>
+            <div class="tags" id="languagesList"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PORTFOLIO ==================== -->
+  <section id="portfolio" class="portfolio">
+    <div class="container">
+      <div class="center" style="margin-bottom: 56px;">
+        <span class="eyebrow">Selected Work</span>
+        <h2>Cases & Treatments</h2>
+        <p class="lead" style="max-width: 620px; margin: 18px auto 0;">A curated selection of clinical cases, each one a collaboration between patient, science and craft. Click any case to compare before and after.</p>
+        <div class="divider center-d"></div>
+      </div>
+
+      <div class="case-filter" id="caseFilter"></div>
+      <div class="case-grid" id="caseGrid"></div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACT ==================== -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <span class="eyebrow">Get in touch</span>
+          <h2>Let's design<br/>your next smile.</h2>
+          <p class="lead" style="margin-top: 14px;">For consultations, professional inquiries or collaboration opportunities, please reach out via any of the channels below.</p>
+
+          <ul class="contact-list">
+            <li><span class="ico">Email</span><a class="val" id="cEmail" href="#">—</a></li>
+            <li><span class="ico">Phone</span><a class="val" id="cPhone" href="#">—</a></li>
+            <li><span class="ico">Instagram</span><a class="val" id="cIg" href="#" target="_blank" rel="noopener">—</a></li>
+            <li><span class="ico">Location</span><span class="val" id="cLoc">—</span></li>
+            <li><span class="ico">License</span><span class="val" id="cLicense">—</span></li>
+          </ul>
+        </div>
+        <div class="contact-side">
+          <span class="eyebrow">For employers</span>
+          <h3>Currently practicing in Dubai</h3>
+          <p>Available for opportunities at premium clinics and dental groups across the United Arab Emirates and the GCC. Holder of a valid DHA license. References from former practices and academic supervisors are available upon request.</p>
+          <div style="margin-top: 24px;">
+            <a href="#" id="downloadCv" class="btn btn-ghost btn-arrow" style="border-color: rgba(255,255,255,.45); color: white;">Download CV</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="container">
+      <div>© <span id="year"></span> Dr. Rodrigo Benítez Olazar. All rights reserved.</div>
+      <div><a href="admin.html" style="color: rgba(255,255,255,.4);">·</a></div>
+    </div>
+  </footer>
+
+  <!-- ==================== LIGHTBOX ==================== -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lb-content">
+      <button class="lb-close" id="lbClose" aria-label="Close">×</button>
+      <div class="compare" id="compare">
+        <img src="" alt="Before" id="beforeImg" />
+        <img src="" alt="After" id="afterImg" />
+        <div class="lbl before">Before</div>
+        <div class="lbl after">After</div>
+        <div class="handle" id="handle"><div class="knob">⇆</div></div>
+      </div>
+      <div class="lb-info">
+        <div class="lb-cat" id="lbCat">—</div>
+        <div class="lb-title" id="lbTitle">—</div>
+        <p class="lb-desc" id="lbDesc">—</p>
+        <div class="lb-extras" id="lbExtras"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin badge -->
+  <div class="admin-badge" id="adminBadge">Admin mode · <a href="#" id="adminExit" style="color:white;text-decoration:underline;margin-left:6px;">Exit</a></div>
+
+  <script src="data/content.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
