@@ -13,8 +13,8 @@ window.SITE_CONTENT = {
     "intro": "I am a DHA-licensed prosthodontist with over a decade of clinical experience across South America, Europe and the Middle East. My practice focuses on full-mouth rehabilitations, porcelain veneers, implant-supported prosthetics and minimally invasive aesthetic dentistry — combining digital workflows with hand-crafted detail to deliver natural, long-lasting results.",
     "email": "dr.rodrigobenitezolazar@gmail.com",
     "phone": "+971 58 931 3859",
-    "instagram": "dr.rodrigobenitezo",
-    "instagramUrl": "https://instagram.com/dr.rodrigobenitezo",
+    "instagram": "dr.rodrigobenitez",
+    "instagramUrl": "https://instagram.com/dr.rodrigobenitez",
     "license": "DHA License — Dubai Health Authority",
     "nationality": "Paraguayan"
   },
@@ -149,10 +149,10 @@ window.SITE_CONTENT = {
       "id": 2,
       "category": "Full mouth",
       "images": [
-        "assets/cases/case-02-01-full_mouth_oclusal_inferior.jpg",
-        "assets/cases/case-02-02-full_mouth_oclusal_superior.jpg",
         "assets/cases/case-02-03-full_mouth_wide.jpg",
-        "assets/cases/case-02-04-full_mouth.jpg"
+        "assets/cases/case-02-04-full_mouth.jpg",
+        "assets/cases/case-02-01-full_mouth_oclusal_inferior.jpg",
+        "assets/cases/case-02-02-full_mouth_oclusal_superior.jpg"
       ]
     },
     {
@@ -167,8 +167,8 @@ window.SITE_CONTENT = {
       "id": 4,
       "category": "Veneers",
       "images": [
-        "assets/cases/case-04-01-veneer.jpg",
-        "assets/cases/case-04-02-veneers_wide.jpg"
+        "assets/cases/case-04-02-veneers_wide.jpg",
+        "assets/cases/case-04-01-veneer.jpg"
       ]
     },
     {
