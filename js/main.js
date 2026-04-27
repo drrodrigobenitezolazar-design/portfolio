@@ -153,45 +153,56 @@ function renderCases() {
     return (c.category || '').includes(activeFilter);
   });
   cases.forEach(c => {
+    const imgs = c.images || (c.before && c.after ? [c.before, c.after] : []);
+    if (!imgs.length) return;
     const card = el('article', { class: 'case-card reveal' });
+    const multiSvg = imgs.length > 1
+      ? `<div class="multi-indicator" aria-hidden="true"><svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6.5" y="3.5" width="12" height="12" rx="1.5" stroke="white" stroke-width="1.6" fill="rgba(0,0,0,0.18)"/><rect x="3.5" y="6.5" width="12" height="12" rx="1.5" stroke="white" stroke-width="1.6" fill="rgba(0,0,0,0.45)"/></svg></div>`
+      : '';
     card.innerHTML = `
-      <div class="case-thumb">
-        <div class="ba">
-          <img src="${c.before}" alt="Before" loading="lazy" />
-          <img src="${c.after}" alt="After" loading="lazy" />
-          <span class="label before">Before</span>
-          <span class="label after">After</span>
-        </div>
-      </div>
-      <div class="case-body">
-        <div class="case-cat">${c.category || 'Case'}</div>
-        <div class="case-title">${c.title}</div>
-        <p class="case-snippet">${c.description}</p>
-      </div>
+      ${multiSvg}
+      <img src="${imgs[0]}" alt="${c.category || 'Case'}" loading="lazy" />
+      <div class="case-overlay"><span class="case-overlay-cat">${c.category || ''}</span></div>
     `;
-    card.addEventListener('click', () => openLightbox(c));
+    card.addEventListener('click', () => openLightbox(c, imgs));
     root.appendChild(card);
   });
   setupReveal();
 }
 
-/* -------- Lightbox / before-after slider -------- */
-function openLightbox(c) {
+/* -------- Lightbox carousel -------- */
+let _lbImages = [];
+let _lbIndex = 0;
+
+function openLightbox(c, imgs) {
+  _lbImages = imgs || c.images || [];
+  _lbIndex = 0;
   const lb = $('#lightbox');
-  $('#beforeImg').src = c.before;
-  $('#afterImg').src = c.after;
-  $('#lbCat').textContent = c.category || 'Case';
-  $('#lbTitle').textContent = c.title;
-  $('#lbDesc').textContent = c.description;
-  const ex = $('#lbExtras');
-  ex.innerHTML = '';
-  (c.extras || []).forEach(src => {
-    const i = el('img');
-    i.src = src;
-    i.alt = c.title;
-    ex.appendChild(i);
+  $('#lbCat').textContent = c.category || '';
+  // Build slides
+  const track = $('#lbTrack');
+  track.innerHTML = '';
+  _lbImages.forEach((src, idx) => {
+    const slide = el('div', { class: 'lb-slide' });
+    slide.innerHTML = `<img src="${src}" alt="${c.category || 'Case'} ${idx+1}" />`;
+    track.appendChild(slide);
   });
-  resetCompareHandle();
+  // Build dots
+  const dots = $('#lbDots');
+  dots.innerHTML = '';
+  if (_lbImages.length > 1) {
+    _lbImages.forEach((_, idx) => {
+      const d = el('span', { class: 'lb-dot' });
+      d.addEventListener('click', () => goToSlide(idx));
+      dots.appendChild(d);
+    });
+  }
+  // Show / hide nav
+  const showNav = _lbImages.length > 1;
+  $('#lbPrev').classList.toggle('hidden', !showNav);
+  $('#lbNext').classList.toggle('hidden', !showNav);
+  $('#lbCounter').style.visibility = showNav ? 'visible' : 'hidden';
+  goToSlide(0, true);
   lb.classList.add('open');
   lb.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
@@ -202,46 +213,42 @@ function closeLightbox() {
   lb.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
 }
-
-function resetCompareHandle() {
-  setComparePos(50);
+function goToSlide(idx, instant = false) {
+  if (!_lbImages.length) return;
+  _lbIndex = ((idx % _lbImages.length) + _lbImages.length) % _lbImages.length;
+  const track = $('#lbTrack');
+  if (instant) track.style.transition = 'none';
+  track.style.transform = `translateX(-${_lbIndex * 100}%)`;
+  if (instant) requestAnimationFrame(() => track.style.transition = '');
+  $$('.lb-dot').forEach((d, i) => d.classList.toggle('active', i === _lbIndex));
+  $('#lbCounter').textContent = `${_lbIndex + 1} / ${_lbImages.length}`;
 }
-function setComparePos(percent) {
-  percent = Math.max(0, Math.min(100, percent));
-  // After image is clipped from the left: at percent X, the LEFT X% is hidden,
-  // the right (100-X)% is visible. So the "Before" shows on the left side
-  // and "After" on the right — drag right to reveal more of After.
-  const after = $('#afterImg');
-  const handle = $('#handle');
-  if (after) after.style.clipPath = `inset(0 0 0 ${percent}%)`;
-  if (handle) handle.style.left = percent + '%';
-}
+function next() { goToSlide(_lbIndex + 1); }
+function prev() { goToSlide(_lbIndex - 1); }
 
-function bindCompareSlider() {
-  const compare = $('#compare');
-  let dragging = false;
-
-  function pointerMove(e) {
-    if (!dragging) return;
-    const rect = compare.getBoundingClientRect();
-    const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
-    const pct = (x / rect.width) * 100;
-    setComparePos(pct);
-  }
-  function start(e) { dragging = true; pointerMove(e); }
-  function end() { dragging = false; }
-
-  compare.addEventListener('mousedown', start);
-  compare.addEventListener('touchstart', start, { passive: true });
-  window.addEventListener('mousemove', pointerMove);
-  window.addEventListener('touchmove', pointerMove, { passive: true });
-  window.addEventListener('mouseup', end);
-  window.addEventListener('touchend', end);
-
-  // Re-align after image on load and resize
-  $('#beforeImg').addEventListener('load', resetCompareHandle);
-  $('#afterImg').addEventListener('load', resetCompareHandle);
-  window.addEventListener('resize', resetCompareHandle);
+function bindCarousel() {
+  $('#lbPrev').addEventListener('click', prev);
+  $('#lbNext').addEventListener('click', next);
+  // Keyboard
+  document.addEventListener('keydown', (e) => {
+    if (!$('#lightbox').classList.contains('open')) return;
+    if (e.key === 'ArrowLeft') prev();
+    if (e.key === 'ArrowRight') next();
+  });
+  // Touch swipe
+  const stage = $('#lbStage');
+  let startX = null, dx = 0;
+  stage.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; dx = 0; }, { passive: true });
+  stage.addEventListener('touchmove', (e) => {
+    if (startX === null) return;
+    dx = e.touches[0].clientX - startX;
+  }, { passive: true });
+  stage.addEventListener('touchend', () => {
+    if (Math.abs(dx) > 60) { dx > 0 ? prev() : next(); }
+    startX = null; dx = 0;
+  });
+  // Window resize: jump without animation
+  window.addEventListener('resize', () => goToSlide(_lbIndex, true));
 }
 
 /* -------- Nav behaviour -------- */
@@ -316,7 +323,7 @@ async function boot() {
   renderCaseFilter();
   renderCases();
   bindNav();
-  bindCompareSlider();
+  bindCarousel();
   bindLightbox();
   bindAdminBadge();
   setYear();

@@ -160,13 +160,13 @@
     <div class="container">
       <div class="center" style="margin-bottom: 56px;">
         <span class="eyebrow">Selected Work</span>
-        <h2>Cases & Treatments</h2>
-        <p class="lead" style="max-width: 620px; margin: 18px auto 0;">A curated selection of clinical cases, each one a collaboration between patient, science and craft. Click any case to compare before and after.</p>
+        <h2>Cases &amp; Treatments</h2>
+        <p class="lead" style="max-width: 620px; margin: 18px auto 0;">A curated selection of clinical cases. Tap any image to view details.</p>
         <div class="divider center-d"></div>
       </div>
 
       <div class="case-filter" id="caseFilter"></div>
-      <div class="case-grid" id="caseGrid"></div>
+      <div class="case-grid case-grid-square" id="caseGrid"></div>
     </div>
   </section>
 
@@ -207,23 +207,18 @@
     </div>
   </footer>
 
-  <!-- ==================== LIGHTBOX ==================== -->
+  <!-- ==================== LIGHTBOX (carousel) ==================== -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
-    <div class="lb-content">
-      <button class="lb-close" id="lbClose" aria-label="Close">×</button>
-      <div class="compare" id="compare">
-        <img src="" alt="Before" id="beforeImg" />
-        <img src="" alt="After" id="afterImg" />
-        <div class="lbl before">Before</div>
-        <div class="lbl after">After</div>
-        <div class="handle" id="handle"><div class="knob">⇆</div></div>
-      </div>
-      <div class="lb-info">
-        <div class="lb-cat" id="lbCat">—</div>
-        <div class="lb-title" id="lbTitle">—</div>
-        <p class="lb-desc" id="lbDesc">—</p>
-        <div class="lb-extras" id="lbExtras"></div>
-      </div>
+    <button class="lb-close" id="lbClose" aria-label="Close">×</button>
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+    <button class="lb-nav lb-next" id="lbNext" aria-label="Next">›</button>
+    <div class="lb-stage" id="lbStage">
+      <div class="lb-track" id="lbTrack"></div>
+    </div>
+    <div class="lb-meta">
+      <div class="lb-cat" id="lbCat">—</div>
+      <div class="lb-dots" id="lbDots"></div>
+      <div class="lb-counter" id="lbCounter">1 / 1</div>
     </div>
   </div>
 
