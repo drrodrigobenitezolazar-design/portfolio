@@ -164,6 +164,11 @@ function renderCases() {
       <img src="${imgs[0]}" alt="${c.category || 'Case'}" loading="lazy" />
       <div class="case-overlay"><span class="case-overlay-cat">${c.category || ''}</span></div>
     `;
+    // Detect orientation once the image loads — portrait images get .portrait so they show fully
+    const img = card.querySelector('img');
+    img.addEventListener('load', () => {
+      if (img.naturalHeight > img.naturalWidth * 1.1) card.classList.add('portrait');
+    }, { once: true });
     card.addEventListener('click', () => openLightbox(c, imgs));
     root.appendChild(card);
   });

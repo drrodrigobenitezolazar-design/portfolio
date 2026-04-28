@@ -609,10 +609,17 @@ header.nav.scrolled {
   transition: opacity .3s var(--transition);
 }
 .case-card img {
-  width: 100%; height: 100%; object-fit: cover;
+  width: 100%; height: 100%;
+  /* Default: cover for landscape/square images. Portrait images flip to contain via .portrait class. */
+  object-fit: cover;
   transition: transform .8s var(--transition);
+  background: var(--bg-alt);
 }
-.case-card:hover img { transform: scale(1.04); }
+.case-card.portrait img {
+  /* 9:16 / vertical images: show the whole image, no cropping */
+  object-fit: contain;
+}
+.case-card:hover img { transform: scale(1.03); }
 
 .case-card .case-overlay {
   position: absolute;

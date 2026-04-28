@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 1,
-    "updatedAt": "2026-04-27"
+    "updatedAt": "2026-04-28"
   },
   "profile": {
     "name": "Dr. Rodrigo Benítez Olazar",
@@ -206,6 +206,83 @@
       "images": [
         "assets/cases/case-09-01-veneers_wide.jpg",
         "assets/cases/case-09-02-veneers.jpg"
+      ]
+    },
+    {
+      "id": 10,
+      "category": "Restorations",
+      "images": [
+        "assets/cases/case-rest-01.jpg"
+      ]
+    },
+    {
+      "id": 11,
+      "category": "Restorations",
+      "images": [
+        "assets/cases/case-rest-02.jpg"
+      ]
+    },
+    {
+      "id": 12,
+      "category": "Restorations",
+      "images": [
+        "assets/cases/case-rest-03.jpg"
+      ]
+    },
+    {
+      "id": 13,
+      "category": "Restorations",
+      "images": [
+        "assets/cases/case-rest-04.jpg"
+      ]
+    },
+    {
+      "id": 14,
+      "category": "Restorations",
+      "images": [
+        "assets/cases/case-rest-05.jpg"
+      ]
+    },
+    {
+      "id": 15,
+      "category": "Restorations",
+      "images": [
+        "assets/cases/case-rest-06.jpg"
+      ]
+    },
+    {
+      "id": 16,
+      "category": "Restorations",
+      "images": [
+        "assets/cases/case-rest-07.jpg"
+      ]
+    },
+    {
+      "id": 17,
+      "category": "Restorations",
+      "images": [
+        "assets/cases/case-rest-08.jpg"
+      ]
+    },
+    {
+      "id": 18,
+      "category": "Restorations",
+      "images": [
+        "assets/cases/case-rest-09.jpg"
+      ]
+    },
+    {
+      "id": 19,
+      "category": "Restorations",
+      "images": [
+        "assets/cases/case-rest-10.jpg"
+      ]
+    },
+    {
+      "id": 20,
+      "category": "Veneers",
+      "images": [
+        "assets/cases/case-veneer-2.jpg"
       ]
     }
   ]
