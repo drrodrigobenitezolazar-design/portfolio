@@ -24,6 +24,20 @@ After that, every time you push a new `data/content.json`, the public site updat
 3. Edit any field. **Save changes** stores the new content locally in your browser, so the site preview will already reflect them.
 4. Click **Export JSON** to download an updated `content.json`. Replace the file in `data/content.json` in your repo, commit, and the public site updates automatically.
 
+## Languages (ES / EN)
+
+The site defaults to Spanish, with an ES / EN switch in the nav. English is the base content; the Spanish overrides live under the `es` key in `data/content.json` / `data/content.js`. Interface labels are in `js/i18n.js`.
+
+## Downloadable CV (PDF)
+
+`cv.html` renders the CV from the site content. After changing content, rebuild both PDFs (needs Google Chrome):
+
+```bash
+bash tools/build-cv.sh
+```
+
+This writes `assets/cv/CV-Rodrigo-Benitez-Olazar-ES.pdf` and `-EN.pdf`, which the "Descargar CV" button links to.
+
 ## Changing the admin password
 
 1. Open `admin.html` in a browser.

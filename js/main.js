@@ -8,6 +8,8 @@ const STORAGE_KEY = 'rbo_content_override_v1';
 const ADMIN_FLAG = 'rbo_admin_session';
 
 let content = null;
+let view = null;          // content localized to the active language
+let lang = getLang();
 
 /* -------- Utilities -------- */
 function $(sel, root = document) { return root.querySelector(sel); }
@@ -26,7 +28,8 @@ function el(tag, attrs = {}, html = '') {
 /* -------- Load content (with admin override) -------- */
 async function loadContent() {
   // 1. Admin override in localStorage (when previewing edits)
-  const override = localStorage.getItem(STORAGE_KEY);
+  let override = null;
+  try { override = localStorage.getItem(STORAGE_KEY); } catch (e) {}
   if (override) {
     try { content = JSON.parse(override); return; }
     catch (e) { console.warn('Invalid override, falling back'); }
@@ -48,12 +51,14 @@ async function loadContent() {
 
 /* -------- Render: profile --------- */
 function renderProfile() {
-  const p = content.profile || {};
+  const p = view.profile || {};
   document.title = `${p.name} — ${p.title}`;
   $('[data-edit="profile.title"]').textContent = p.title || '';
   $('[data-edit="profile.location"]').textContent = p.location || '';
   $$('[data-edit="profile.intro"]').forEach(n => n.textContent = p.intro || '');
   $('[data-edit="profile.tagline"]').textContent = p.tagline || '';
+  $('[data-edit="profile.eyebrow"]').textContent = p.eyebrow || '';
+  $('[data-edit="profile.about"]').textContent = p.about || '';
 
   // Hero name split
   const fullName = (p.name || '').replace(/^Dr\.\s+/, '');
@@ -72,19 +77,18 @@ function renderProfile() {
   cEmail.href = 'mailto:' + (p.email || '');
   const cPhone = $('#cPhone');
   cPhone.textContent = p.phone || '';
-  cPhone.href = 'tel:' + (p.phone || '').replace(/\s/g, '');
+  cPhone.href = whatsappUrl(p.phone);
   const cIg = $('#cIg');
   cIg.textContent = '@' + (p.instagram || '');
   cIg.href = p.instagramUrl || '#';
   $('#cLoc').textContent = p.location || '';
-  $('#cLicense').textContent = p.license || '';
 }
 
 /* -------- Render: stats -------- */
 function renderStats() {
   const grid = $('#statsGrid');
   grid.innerHTML = '';
-  (content.stats || []).forEach(s => {
+  (view.stats || []).forEach(s => {
     const node = el('div', { class: 'stat' });
     node.innerHTML = `<div class="num">${s.value}</div><div class="label">${s.label}</div>`;
     grid.appendChild(node);
@@ -113,18 +117,22 @@ function renderTimeline(listId, items) {
 function renderTags() {
   const sk = $('#skillsList');
   sk.innerHTML = '';
-  (content.skills || []).forEach(s => {
+  (view.skills || []).forEach(s => {
     sk.appendChild(el('span', { class: 'tag' }, s));
   });
   const lg = $('#languagesList');
   lg.innerHTML = '';
-  (content.languages || []).forEach(l => {
+  (view.languages || []).forEach(l => {
     lg.appendChild(el('span', { class: 'tag' }, `${l.name} <span class="level">${l.level}</span>`));
   });
 }
 
 /* -------- Render: cases + filters -------- */
 let activeFilter = 'all';
+
+function catLabel(category) {
+  return (category || '').split('·').map(s => t(lang, 'cat.' + s.trim())).join(' · ');
+}
 
 function renderCaseFilter() {
   const root = $('#caseFilter');
@@ -134,7 +142,7 @@ function renderCaseFilter() {
   });
   root.innerHTML = '';
   Array.from(cats).forEach(cat => {
-    const b = el('button', { class: 'filter-btn' + (cat === activeFilter ? ' active' : '') }, cat === 'all' ? 'All cases' : cat);
+    const b = el('button', { class: 'filter-btn' + (cat === activeFilter ? ' active' : '') }, cat === 'all' ? t(lang, 'port.all') : t(lang, 'cat.' + cat));
     b.dataset.cat = cat;
     b.addEventListener('click', () => {
       activeFilter = cat;
@@ -161,8 +169,8 @@ function renderCases() {
       : '';
     card.innerHTML = `
       ${multiSvg}
-      <img src="${imgs[0]}" alt="${c.category || 'Case'}" loading="lazy" />
-      <div class="case-overlay"><span class="case-overlay-cat">${c.category || ''}</span></div>
+      <img src="${imgs[0]}" alt="${catLabel(c.category)}" loading="lazy" />
+      <div class="case-overlay"><span class="case-overlay-cat">${catLabel(c.category)}</span></div>
     `;
     // Detect orientation once the image loads — portrait images get .portrait so they show fully
     const img = card.querySelector('img');
@@ -183,7 +191,7 @@ function openLightbox(c, imgs) {
   _lbImages = imgs || c.images || [];
   _lbIndex = 0;
   const lb = $('#lightbox');
-  $('#lbCat').textContent = c.category || '';
+  $('#lbCat').textContent = catLabel(c.category);
   // Build slides
   const track = $('#lbTrack');
   track.innerHTML = '';
@@ -317,16 +325,45 @@ function setYear() {
   $('#year').textContent = new Date().getFullYear();
 }
 
-/* -------- Boot ---------- */
-async function boot() {
-  await loadContent();
+/* -------- Language (ES / EN) ---------- */
+function applyUI() {
+  document.documentElement.lang = lang;
+  $$('[data-i18n]').forEach(n => { n.innerHTML = t(lang, n.dataset.i18n); });
+  $$('.lang-switch button').forEach(b => {
+    const on = b.dataset.lang === lang;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-pressed', on);
+  });
+  $('#downloadCv').href = CV_FILES[lang];
+}
+
+function renderAll() {
+  view = localize(content, lang);
+  applyUI();
   renderProfile();
   renderStats();
-  renderTimeline('#experienceList', content.experience || []);
-  renderTimeline('#educationList', content.education || []);
+  renderTimeline('#experienceList', view.experience || []);
+  renderTimeline('#educationList', view.education || []);
   renderTags();
   renderCaseFilter();
   renderCases();
+  setupReveal();
+}
+
+function bindLangSwitch() {
+  $$('.lang-switch button').forEach(b => b.addEventListener('click', () => {
+    if (b.dataset.lang === lang) return;
+    lang = b.dataset.lang;
+    saveLang(lang);
+    renderAll();
+  }));
+}
+
+/* -------- Boot ---------- */
+async function boot() {
+  await loadContent();
+  renderAll();
+  bindLangSwitch();
   bindNav();
   bindCarousel();
   bindLightbox();

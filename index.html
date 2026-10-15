@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#1a1814" />
-  <title>Dr. Rodrigo Benítez Olazar — Prosthodontist · Dubai</title>
-  <meta name="description" content="DHA-licensed prosthodontist based in Dubai. Specialist in aesthetic and restorative dentistry: porcelain veneers, full-mouth rehabilitation, implant-supported prosthetics." />
-  <meta property="og:title" content="Dr. Rodrigo Benítez Olazar — Prosthodontist" />
-  <meta property="og:description" content="Smiles designed with science. Restored with art." />
-  <meta property="og:image" content="assets/profile/hero-portrait.jpg" />
+  <title>Dr. Rodrigo Benítez Olazar — Rehabilitador Oral · Implantólogo</title>
+  <meta name="description" content="Rehabilitador oral e implantólogo paraguayo, con experiencia internacional y licencia DHA en Dubái. Carillas de porcelana, rehabilitación oral completa y prótesis sobre implantes." />
+  <meta property="og:title" content="Dr. Rodrigo Benítez Olazar — Rehabilitador Oral · Implantólogo" />
+  <meta property="og:description" content="Sonrisas diseñadas con ciencia. Restauradas con arte." />
+  <meta property="og:image" content="assets/profile/cover-portrait.jpg" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231a1814'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='62' fill='%23b08a4a' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="css/styles.css?v=20260428-1" />
+  <link rel="stylesheet" href="css/styles.css?v=20261015-3" />
 </head>
 <body>
 
@@ -20,24 +20,32 @@
       <a href="#top" class="brand"><span class="dot"></span>Dr. Rodrigo Benítez Olazar</a>
       <nav>
         <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#about" data-i18n="nav.about">About</a></li>
+          <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+          <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+          <li><a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
         </ul>
       </nav>
-      <a href="#contact" class="nav-cta">Get in touch</a>
+      <div class="nav-right">
+        <div class="lang-switch" role="group" aria-label="Idioma / Language">
+          <button type="button" data-lang="es">ES</button><button type="button" data-lang="en">EN</button>
+        </div>
+        <a href="#contact" class="nav-cta" data-i18n="nav.cta">Get in touch</a>
+      </div>
       <button class="menu-toggle" id="menuToggle" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
     </div>
     <div class="mobile-menu" id="mobileMenu">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#contact">Contact</a>
+      <a href="#about" data-i18n="nav.about">About</a>
+      <a href="#experience" data-i18n="nav.experience">Experience</a>
+      <a href="#skills" data-i18n="nav.skills">Skills</a>
+      <a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+      <div class="lang-switch" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang="es">ES</button><button type="button" data-lang="en">EN</button>
+      </div>
     </div>
   </header>
 
@@ -46,32 +54,32 @@
     <div class="container">
       <div class="hero-grid">
         <div class="hero-text reveal">
-          <span class="eyebrow" data-edit="profile.eyebrow">Prosthodontist · Dubai</span>
+          <span class="eyebrow" data-edit="profile.eyebrow">Dubái · Paraguay</span>
           <h1>
             <span class="light" data-edit-fn="firstName">Rodrigo</span><br/>
             <span class="accent" data-edit-fn="lastName">Benítez Olazar</span>
           </h1>
           <div class="hero-meta">
-            <span data-edit="profile.title">Prosthodontist · General Dentist</span>
-            <span data-edit="profile.location">Dubai, UAE</span>
+            <span data-edit="profile.title">Rehabilitador Oral · Implantólogo</span>
+            <span data-edit="profile.location">Dubái, EAU</span>
           </div>
           <p class="lead" data-edit="profile.intro">
             I am a DHA-licensed prosthodontist with over a decade of clinical experience...
           </p>
           <div class="hero-cta">
-            <a href="#portfolio" class="btn btn-primary btn-arrow">View Portfolio</a>
-            <a href="#contact" class="btn btn-ghost">Contact me</a>
+            <a href="#portfolio" class="btn btn-primary btn-arrow" data-i18n="hero.portfolio">View Portfolio</a>
+            <a href="#contact" class="btn btn-ghost" data-i18n="hero.contact">Contact me</a>
           </div>
         </div>
 
         <div class="hero-portrait reveal">
           <div class="frame">
-            <img src="assets/profile/hero-portrait.jpg" alt="Dr. Rodrigo Benítez Olazar" data-edit-img="hero" />
+            <img src="assets/profile/cover-portrait.jpg" alt="Dr. Rodrigo Benítez Olazar" data-edit-img="hero" />
           </div>
         </div>
       </div>
     </div>
-    <div class="scroll-hint">Scroll</div>
+    <div class="scroll-hint" data-i18n="hero.scroll">Scroll</div>
   </section>
 
   <!-- ==================== STATS ==================== -->
@@ -89,15 +97,13 @@
           <img src="assets/profile/about-portrait.jpg" alt="Dr. Rodrigo Benítez Olazar" data-edit-img="about" />
         </div>
         <div class="about-text reveal">
-          <span class="eyebrow">About</span>
+          <span class="eyebrow" data-i18n="about.eyebrow">About</span>
           <h2 data-edit="profile.tagline">Smiles designed with science. Restored with art.</h2>
           <div class="divider"></div>
           <p class="lead" data-edit="profile.intro">
             I am a DHA-licensed prosthodontist...
           </p>
-          <p style="margin-top: 18px;">
-            Trained at the Universidad Nacional de Asunción and at the world-renowned Faculdade de Odontologia de Bauru — Universidade de São Paulo, my approach blends biological understanding, occlusal precision and the latest in digital workflows. I believe each restoration must look natural, function harmoniously, and last for years — and that the patient should be a partner in every decision along the way.
-          </p>
+          <p style="margin-top: 18px;" data-edit="profile.about"></p>
           <p class="signature" data-edit="profile.signature">— Dr. Rodrigo</p>
         </div>
       </div>
@@ -109,9 +115,9 @@
     <div class="container">
       <div class="split">
         <div class="col-title">
-          <span class="eyebrow">Career</span>
-          <h2>Professional<br/>Experience</h2>
-          <p class="muted" style="margin-top: 18px; max-width: 320px;">Over a decade of clinical practice across Paraguay, Brazil and the United Arab Emirates.</p>
+          <span class="eyebrow" data-i18n="exp.eyebrow">Career</span>
+          <h2 data-i18n="exp.title">Professional<br/>Experience</h2>
+          <p class="muted" style="margin-top: 18px; max-width: 320px;" data-i18n="exp.desc">Over a decade of clinical practice across Paraguay, Brazil and the United Arab Emirates.</p>
         </div>
         <div class="col-content">
           <div class="timeline" id="experienceList"></div>
@@ -125,8 +131,8 @@
     <div class="container">
       <div class="split">
         <div class="col-title">
-          <span class="eyebrow">Education</span>
-          <h2>Academic<br/>Background</h2>
+          <span class="eyebrow" data-i18n="edu.eyebrow">Education</span>
+          <h2 data-i18n="edu.title">Academic<br/>Background</h2>
         </div>
         <div class="col-content">
           <div class="timeline" id="educationList"></div>
@@ -140,16 +146,16 @@
     <div class="container">
       <div class="split">
         <div class="col-title">
-          <span class="eyebrow">Expertise</span>
-          <h2>Clinical<br/>Skills</h2>
-          <p class="muted" style="margin-top: 18px; max-width: 320px;">A focused practice anchored in prosthodontics, aesthetic dentistry and full-mouth rehabilitation.</p>
+          <span class="eyebrow" data-i18n="skills.eyebrow">Expertise</span>
+          <h2 data-i18n="skills.title">Clinical<br/>Skills</h2>
+          <p class="muted" style="margin-top: 18px; max-width: 320px;" data-i18n="skills.desc">A focused practice anchored in prosthodontics, aesthetic dentistry and full-mouth rehabilitation.</p>
         </div>
         <div class="col-content">
           <div class="tags" id="skillsList"></div>
 
           <div style="margin-top: 56px;">
-            <span class="eyebrow">Languages</span>
-            <h3 style="margin-bottom: 22px; margin-top: 12px;">Spoken</h3>
+            <span class="eyebrow" data-i18n="lang.eyebrow">Languages</span>
+            <h3 style="margin-bottom: 22px; margin-top: 12px;" data-i18n="lang.title">Spoken</h3>
             <div class="tags" id="languagesList"></div>
           </div>
         </div>
@@ -161,9 +167,9 @@
   <section id="portfolio" class="portfolio">
     <div class="container">
       <div class="center" style="margin-bottom: 56px;">
-        <span class="eyebrow">Selected Work</span>
-        <h2>Cases &amp; Treatments</h2>
-        <p class="lead" style="max-width: 620px; margin: 18px auto 0;">A curated selection of clinical cases. Tap any image to view details.</p>
+        <span class="eyebrow" data-i18n="port.eyebrow">Selected Work</span>
+        <h2 data-i18n="port.title">Cases &amp; Treatments</h2>
+        <p class="lead" style="max-width: 620px; margin: 18px auto 0;" data-i18n="port.desc">A curated selection of clinical cases. Tap any image to view details.</p>
         <div class="divider center-d"></div>
       </div>
 
@@ -177,24 +183,23 @@
     <div class="container">
       <div class="contact-grid">
         <div>
-          <span class="eyebrow">Get in touch</span>
-          <h2>Let's design<br/>your next smile.</h2>
-          <p class="lead" style="margin-top: 14px;">For consultations, professional inquiries or collaboration opportunities, please reach out via any of the channels below.</p>
+          <span class="eyebrow" data-i18n="contact.eyebrow">Get in touch</span>
+          <h2 data-i18n="contact.title">Let's design<br/>your next smile.</h2>
+          <p class="lead" style="margin-top: 14px;" data-i18n="contact.desc">For consultations, professional inquiries or collaboration opportunities, please reach out via any of the channels below.</p>
 
           <ul class="contact-list">
-            <li><span class="ico">Email</span><a class="val" id="cEmail" href="#">—</a></li>
-            <li><span class="ico">Phone</span><a class="val" id="cPhone" href="#">—</a></li>
-            <li><span class="ico">Instagram</span><a class="val" id="cIg" href="#" target="_blank" rel="noopener">—</a></li>
-            <li><span class="ico">Location</span><span class="val" id="cLoc">—</span></li>
-            <li><span class="ico">License</span><span class="val" id="cLicense">—</span></li>
+            <li><span class="ico" data-i18n="contact.email">Email</span><a class="val" id="cEmail" href="mailto:dr.rodrigobenitezolazar@gmail.com">dr.rodrigobenitezolazar@gmail.com</a></li>
+            <li><span class="ico" data-i18n="contact.whatsapp">WhatsApp</span><a class="val" id="cPhone" href="https://wa.me/971589313859" target="_blank" rel="noopener">+971 58 931 3859</a></li>
+            <li><span class="ico" data-i18n="contact.instagram">Instagram</span><a class="val" id="cIg" href="https://www.instagram.com/dr.rodrigobenitez/" target="_blank" rel="noopener">@dr.rodrigobenitez</a></li>
+            <li><span class="ico" data-i18n="contact.location">Location</span><span class="val" id="cLoc">—</span></li>
           </ul>
         </div>
         <div class="contact-side">
-          <span class="eyebrow">For employers</span>
-          <h3>Currently practicing in Dubai</h3>
-          <p>Available for opportunities at premium clinics and dental groups across the United Arab Emirates and the GCC. Holder of a valid DHA license. References from former practices and academic supervisors are available upon request.</p>
+          <span class="eyebrow" data-i18n="side.eyebrow">For clinics</span>
+          <h3 data-i18n="side.title">Professional contact</h3>
+          <p data-i18n="side.desc"></p>
           <div style="margin-top: 24px;">
-            <a href="#" id="downloadCv" class="btn btn-ghost btn-arrow" style="border-color: rgba(255,255,255,.45); color: white;">Download CV</a>
+            <a href="assets/cv/CV-Rodrigo-Benitez-Olazar-ES.pdf" download id="downloadCv" class="btn btn-ghost btn-arrow" style="border-color: rgba(255,255,255,.45); color: white;" data-i18n="side.cv">Descargar CV</a>
           </div>
         </div>
       </div>
@@ -204,7 +209,7 @@
   <!-- ==================== FOOTER ==================== -->
   <footer>
     <div class="container">
-      <div>© <span id="year"></span> Dr. Rodrigo Benítez Olazar. All rights reserved.</div>
+      <div>© <span id="year"></span> Dr. Rodrigo Benítez Olazar. <span data-i18n="footer.rights">All rights reserved.</span></div>
       <div><a href="admin.html" style="color: rgba(255,255,255,.4);">·</a></div>
     </div>
   </footer>
@@ -227,7 +232,8 @@
   <!-- Admin badge -->
   <div class="admin-badge" id="adminBadge">Admin mode · <a href="#" id="adminExit" style="color:white;text-decoration:underline;margin-left:6px;">Exit</a></div>
 
-  <script src="data/content.js?v=20260428-1"></script>
-  <script src="js/main.js?v=20260428-1"></script>
+  <script src="data/content.js?v=20261015-3"></script>
+  <script src="js/i18n.js?v=20261015-3"></script>
+  <script src="js/main.js?v=20261015-3"></script>
 </body>
 </html>

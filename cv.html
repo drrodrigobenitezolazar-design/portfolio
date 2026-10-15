@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>CV — Dr. Rodrigo Benítez Olazar</title>
+  <!-- Printable CV. Source for the PDFs in assets/cv/ (rebuild with tools/build-cv.sh). -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    @page { size: A4; margin: 16mm 16mm 14mm; }
+    :root {
+      --ink: #1a1814;
+      --soft: #4a463f;
+      --mute: #8a847a;
+      --line: #e2dccf;
+      --gold: #b08a4a;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Inter', -apple-system, system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font: 400 9.4pt/1.5 var(--sans);
+      color: var(--soft);
+      background: #fff;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .page { max-width: 178mm; margin: 0 auto; }
+    @media screen { body { background: #f3efe8; } .page { background: #fff; padding: 16mm; margin: 24px auto; } }
+    a { color: inherit; text-decoration: none; }
+
+    header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8mm;
+      align-items: end;
+      padding-bottom: 6mm;
+      border-bottom: 1px solid var(--ink);
+    }
+    h1 {
+      font: 500 27pt/1.05 var(--serif);
+      color: var(--ink);
+      letter-spacing: 0.01em;
+    }
+    .title { margin-top: 2.5mm; font-size: 9pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+    .contact { margin-top: 4mm; display: flex; flex-wrap: wrap; gap: 1.2mm 5mm; font-size: 8.6pt; }
+    .contact span::before { content: ''; display: inline-block; width: 3px; height: 3px; border-radius: 50%; background: var(--gold); margin: 0 2mm 1.4pt 0; }
+    .photo { width: 27mm; height: 34mm; object-fit: cover; object-position: center 25%; }
+
+    section { margin-top: 6.5mm; }
+    h2 {
+      font: 600 7.6pt/1 var(--sans);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 3mm;
+      margin-bottom: 3.2mm;
+    }
+    h2::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+
+    .profile p + p { margin-top: 2mm; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; }
+    .stat b { display: block; font: 500 17pt/1 var(--serif); color: var(--ink); }
+    .stat small { font-size: 7.8pt; color: var(--mute); }
+
+    .item { display: grid; grid-template-columns: 34mm 1fr; gap: 4mm; padding: 2.4mm 0; break-inside: avoid; }
+    .item + .item { border-top: 1px solid var(--line); }
+    .when { font-size: 8pt; color: var(--mute); line-height: 1.45; }
+    .what h3 { font: 600 12pt/1.2 var(--serif); color: var(--ink); }
+    .what .role { font-size: 8.6pt; color: var(--gold); font-weight: 500; margin-top: 0.6mm; }
+    .what p { margin-top: 1.2mm; }
+
+    .cols { display: grid; grid-template-columns: 1.7fr 1fr; gap: 8mm; }
+    ul.skills { list-style: none; columns: 2; column-gap: 6mm; }
+    ul.skills li { padding: 0.8mm 0 0.8mm 5mm; position: relative; break-inside: avoid; }
+    ul.skills li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
+    .langs div { display: flex; justify-content: space-between; padding: 1mm 0; border-bottom: 1px solid var(--line); }
+    .langs b { font-weight: 500; color: var(--ink); }
+    .meta { margin-top: 4mm; font-size: 8.4pt; }
+    .meta div { padding: 0.6mm 0; }
+    .meta b { color: var(--ink); font-weight: 500; }
+    .portfolio a { color: var(--gold); font-weight: 500; }
+  </style>
+</head>
+<body>
+  <div class="page" id="cv"></div>
+
+  <script src="data/content.js"></script>
+  <script src="js/i18n.js"></script>
+  <script>
+    const lang = getLang();
+    const c = localize(window.SITE_CONTENT, lang);
+    const p = c.profile;
+    const T = k => t(lang, k);
+    const esc = s => String(s || '').replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+    const site = p.website || '';
+    document.documentElement.lang = lang;
+
+    const timeline = items => items.map(i => `
+      <div class="item">
+        <div class="when"><span style="white-space:nowrap">${esc(i.from)}${i.to ? ' — ' + esc(i.to) : ''}</span><br/>${esc(i.city)}</div>
+        <div class="what">
+          <h3>${esc(i.place)}</h3>
+          <div class="role">${esc(i.role || i.degree)}</div>
+          ${i.summary ? `<p>${esc(i.summary)}</p>` : ''}
+        </div>
+      </div>`).join('');
+
+    document.getElementById('cv').innerHTML = `
+      <header>
+        <div>
+          <h1>${esc(p.name)}</h1>
+          <div class="title">${esc(p.title)}</div>
+          <div class="contact">
+            <span>${esc(p.location)}</span>
+            <span><a href="mailto:${esc(p.email)}">${esc(p.email)}</a></span>
+            <span><a href="${whatsappUrl(p.phone)}">WhatsApp ${esc(p.phone)}</a></span>
+            <span><a href="${esc(p.instagramUrl)}">@${esc(p.instagram)}</a></span>
+          </div>
+        </div>
+        <img class="photo" src="assets/profile/cover-portrait.jpg" alt="" />
+      </header>
+
+      <section class="profile">
+        <h2>${T('cv.profile')}</h2>
+        <p>${esc(p.intro)}</p>
+        <p>${esc(p.about)}</p>
+      </section>
+
+      <section>
+        <h2>${T('cv.highlights')}</h2>
+        <div class="stats">${c.stats.map(s => `<div class="stat"><b>${esc(s.value)}</b><small>${esc(s.label)}</small></div>`).join('')}</div>
+      </section>
+
+      <section>
+        <h2>${T('cv.experience')}</h2>
+        ${timeline(c.experience)}
+      </section>
+
+      <section>
+        <h2>${T('cv.education')}</h2>
+        ${timeline(c.education)}
+      </section>
+
+      <section class="cols">
+        <div>
+          <h2>${T('cv.skills')}</h2>
+          <ul class="skills">${c.skills.map(s => `<li>${esc(s)}</li>`).join('')}</ul>
+        </div>
+        <div>
+          <h2>${T('cv.languages')}</h2>
+          <div class="langs">${c.languages.map(l => `<div><b>${esc(l.name)}</b><span>${esc(l.level)}</span></div>`).join('')}</div>
+          <div class="meta">
+            <div><b>${T('cv.license')}:</b> ${esc(p.license)}</div>
+            <div><b>${T('cv.nationality')}:</b> ${esc(p.nationality)}</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="portfolio">
+        <h2>${T('cv.portfolio')}</h2>
+        <p>${T('cv.portfolioDesc')} <a href="${esc(site)}">${esc(site.replace(/^https?:\/\//, '').replace(/\/$/, ''))}</a></p>
+      </section>
+    `;
+  </script>
+</body>
+</html>

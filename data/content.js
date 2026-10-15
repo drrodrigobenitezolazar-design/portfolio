@@ -2,21 +2,25 @@
 window.SITE_CONTENT = {
   "meta": {
     "version": 1,
-    "updatedAt": "2026-04-28"
+    "updatedAt": "2026-10-15"
   },
   "profile": {
     "name": "Dr. Rodrigo Benítez Olazar",
-    "title": "Prosthodontist · General Dentist",
+    "title": "Oral Rehabilitation Specialist · Implantologist",
     "subtitle": "Specialist in Aesthetic & Restorative Dentistry",
-    "location": "Dubai, United Arab Emirates",
+    "location": "Dubai, UAE",
     "tagline": "Smiles designed with science. Restored with art.",
-    "intro": "I am a DHA-licensed prosthodontist with over a decade of clinical experience across South America, Europe and the Middle East. My practice focuses on full-mouth rehabilitations, porcelain veneers, implant-supported prosthetics and minimally invasive aesthetic dentistry — combining digital workflows with hand-crafted detail to deliver natural, long-lasting results.",
+    "intro": "I am a Paraguayan oral rehabilitation specialist and implantologist with over a decade of clinical experience across Paraguay, Brazil and the United Arab Emirates. With international experience and a DHA license in Dubai, my practice focuses on full-mouth rehabilitations, porcelain veneers, implant-supported prosthetics and minimally invasive aesthetic dentistry — combining digital workflows with hand-crafted detail to deliver natural, long-lasting results.",
     "email": "dr.rodrigobenitezolazar@gmail.com",
     "phone": "+971 58 931 3859",
     "instagram": "dr.rodrigobenitez",
-    "instagramUrl": "https://instagram.com/dr.rodrigobenitez",
+    "instagramUrl": "https://www.instagram.com/dr.rodrigobenitez/",
     "license": "DHA License — Dubai Health Authority",
-    "nationality": "Paraguayan"
+    "nationality": "Paraguayan",
+    "eyebrow": "Dubai · Paraguay",
+    "about": "Trained at the Universidad Nacional de Asunción and at the world-renowned Faculdade de Odontologia de Bauru — Universidade de São Paulo, my approach blends biological understanding, occlusal precision and the latest in digital workflows. I believe each restoration must look natural, function harmoniously, and last for years — and that the patient should be a partner in every decision along the way.",
+    "signature": "— Dr. Rodrigo",
+    "website": "https://drrodrigobenitezolazar-design.github.io/portfolio/"
   },
   "stats": [
     {
@@ -120,7 +124,6 @@ window.SITE_CONTENT = {
     "PMMA digital provisionals",
     "Removable partial & complete dentures",
     "Composite restorations & contouring",
-    "Connective tissue grafts & gingivoplasty",
     "Bruxism & erosion management"
   ],
   "languages": [
@@ -286,5 +289,103 @@ window.SITE_CONTENT = {
         "assets/cases/case-veneer-2.jpg"
       ]
     }
-  ]
+  ],
+  "es": {
+    "profile": {
+      "title": "Rehabilitador Oral · Implantólogo",
+      "subtitle": "Especialista en Odontología Estética y Restauradora",
+      "eyebrow": "Dubái · Paraguay",
+      "location": "Dubái, EAU",
+      "tagline": "Sonrisas diseñadas con ciencia. Restauradas con arte.",
+      "intro": "Soy rehabilitador oral e implantólogo, con más de diez años de experiencia clínica en Paraguay, Brasil y Emiratos Árabes Unidos. Con experiencia internacional y licencia DHA en Dubái, mi práctica se centra en rehabilitaciones orales completas, carillas de porcelana, prótesis sobre implantes y odontología estética mínimamente invasiva, combinando flujo digital con trabajo artesanal para lograr resultados naturales y duraderos.",
+      "about": "Formado en la Universidad Nacional de Asunción y en la Facultad de Odontología de Bauru — Universidad de São Paulo, referente mundial en rehabilitación oral, mi enfoque combina conocimiento biológico, precisión oclusal y las últimas herramientas digitales. Creo que cada restauración debe verse natural, funcionar en armonía y durar muchos años, y que el paciente debe participar en cada decisión del tratamiento.",
+      "license": "Licencia DHA — Autoridad de Salud de Dubái",
+      "nationality": "Paraguaya"
+    },
+    "stats": [
+      {
+        "label": "Años de experiencia clínica"
+      },
+      {
+        "label": "Casos estéticos y restauradores"
+      },
+      {
+        "label": "Países · Paraguay · Brasil · EAU"
+      },
+      {
+        "label": "Idiomas"
+      }
+    ],
+    "experience": [
+      {
+        "role": "Odontólogo General",
+        "city": "Dubái, EAU",
+        "to": "Actualidad",
+        "summary": "Odontología estética y restauradora, principalmente rehabilitaciones con carillas de porcelana, coronas y puentes. Restauraciones, profilaxis y blanqueamientos."
+      },
+      {
+        "role": "Odontólogo General",
+        "city": "Dubái, EAU",
+        "summary": "Odontología general y estética, principalmente rehabilitaciones con carillas de porcelana, coronas y puentes, restauraciones, profilaxis y blanqueamientos."
+      },
+      {
+        "role": "Odontólogo General",
+        "city": "Dubái, EAU",
+        "to": "Ene 2024",
+        "summary": "Odontología general, restauraciones, extracciones simples y de terceros molares."
+      },
+      {
+        "role": "Profesor Asistente — Cátedra de Prótesis Total y Parcial Removible",
+        "summary": "Docencia y supervisión de estudiantes de grado en el diseño y la ejecución clínica de prótesis totales y parciales removibles, con énfasis en compatibilidad biológica, retención y estética."
+      },
+      {
+        "role": "Especialista en Prótesis · Odontólogo General",
+        "from": "Abr 2017",
+        "summary": "Como especialista en prótesis dental, lideré el diseño, la confección y la instalación de prótesis personalizadas para pacientes con necesidades diversas, incluyendo casos complejos de rehabilitación oral con distintos tipos de restauraciones, en estrecha colaboración con equipos multidisciplinarios y técnicos dentales."
+      },
+      {
+        "role": "Especialista en Prótesis",
+        "summary": "Diseño, confección e instalación de prótesis dentales personalizadas y manejo de casos complejos de rehabilitación oral, junto a equipos multidisciplinarios y técnicos dentales, para lograr el mejor resultado para cada paciente."
+      }
+    ],
+    "education": [
+      {
+        "degree": "Especialización en Implantología"
+      },
+      {
+        "degree": "Residencia en Prótesis Dental",
+        "city": "Bauru, Brasil"
+      },
+      {
+        "degree": "Doctor en Odontología"
+      }
+    ],
+    "skills": [
+      "Carillas de porcelana (disilicato de litio, feldespáticas)",
+      "Rehabilitación oral completa",
+      "Prótesis sobre implantes (FP1 / FP3)",
+      "Coronas y puentes de zirconio",
+      "Aumento de dimensión vertical (DVO) — protocolos con Jig de Lucia",
+      "Diseño digital de sonrisa y mock-ups",
+      "Colocación de implantes y elevación de seno maxilar",
+      "Provisorios digitales en PMMA",
+      "Prótesis parciales y totales removibles",
+      "Restauraciones y remodelado con resina compuesta",
+      "Manejo de bruxismo y erosión"
+    ],
+    "languages": [
+      {
+        "name": "Español",
+        "level": "Nativo"
+      },
+      {
+        "name": "Portugués",
+        "level": "Fluido"
+      },
+      {
+        "name": "Inglés",
+        "level": "Profesional"
+      }
+    ]
+  }
 };
